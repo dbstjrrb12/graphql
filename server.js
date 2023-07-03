@@ -20,6 +20,7 @@ const typeDefs = gql`
     id: ID
     firstname: String
     lastname: String
+    fullname: String
   }
   type Tweet {
     id: ID
@@ -35,6 +36,12 @@ const typeDefs = gql`
 `;
 
 const resolvers = {
+  User: {
+    fullname(root) {
+      const { firstname, lastname } = root;
+      return `${firstname} ${lastname}`;
+    },
+  },
   Query: {
     allTweets() {
       return tweets;
